@@ -70,10 +70,9 @@ public class ManufacturingSaga extends CommandSagaBase {
 
     @SagaEventHandler(associationProperty = "transactionId")
     public void on(ProductAddedToStoreEvent event) throws Throwable {
-        throw new RuntimeException("test error");
-//        if (!addCommands.isEmpty()) {
-//            sendProductCommand(addCommands.remove(0));
-//        } else completeOk(null);
+        if (!addCommands.isEmpty()) {
+            sendProductCommand(addCommands.remove(0));
+        } else completeOk(null);
     }
 
     @Override

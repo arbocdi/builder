@@ -14,7 +14,7 @@ public class BlueprintMaterial {
 
     public BlueprintMaterial(BlueprintMaterialView view){
         name = view.getName();
-        qty= toView().getQty();;
+        qty= view.getQty();;
     }
 
     public BlueprintMaterialView toView(){

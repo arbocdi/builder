@@ -1,6 +1,7 @@
 package kg.arbocdi.builder;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import kg.arbocdi.builder.cfg.Config;
 import kg.arbocdi.builder.cfg.spring.DbCleaner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -15,7 +16,7 @@ import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 @SpringBootApplication
 @ConfigurationPropertiesScan
 @EntityScan(basePackageClasses = {Application.class})
-@ComponentScan(basePackageClasses = {Application.class}, excludeFilters = @ComponentScan.Filter(classes = DbCleaner.class, type = FilterType.ASSIGNABLE_TYPE))
+@ComponentScan(basePackageClasses = {Application.class, Config.class})//, excludeFilters = @ComponentScan.Filter(classes = DbCleaner.class, type = FilterType.ASSIGNABLE_TYPE))
 public class Application {
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);

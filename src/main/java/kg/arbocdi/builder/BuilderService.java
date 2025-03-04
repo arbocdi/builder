@@ -16,8 +16,11 @@ import kg.arbocdi.builder.views.blueprints.BlueprintEntityRepo;
 import lombok.extern.slf4j.Slf4j;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.axonframework.eventhandling.gateway.EventGateway;
+import org.axonframework.messaging.unitofwork.DefaultUnitOfWork;
+import org.axonframework.messaging.unitofwork.UnitOfWork;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -41,7 +44,7 @@ public class BuilderService {
         results.addAll(createMaterials());
         return results;
     }
-
+    @Transactional
     public List build() throws InterruptedException {
 //        int cruisers = 1000;
 //        int battleships = 200;
@@ -52,7 +55,6 @@ public class BuilderService {
 //        results.addAll(createMaterials());
 //
 //        Thread.sleep(10_000);
-
         eventGateway.publish(new StartManufacturingEvent(
                 idGenerator.generate(),
                 "battleship",
